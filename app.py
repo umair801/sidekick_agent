@@ -1,7 +1,12 @@
 # Deploying URL: https://huggingface.co/spaces/umair801/sidekick-agent
 
+import subprocess
+import sys
 import gradio as gr
 from sidekick import Sidekick
+
+# Install Playwright's bundled Chromium browser on HF Spaces
+subprocess.run(["playwright", "install", "chromium"], check=True)
 
 
 async def setup():
