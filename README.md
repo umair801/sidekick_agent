@@ -1,8 +1,8 @@
 ---
 title: Sidekick Agent
 emoji: 🤖
-colorFrom: emerald
-colorTo: green
+colorFrom: green
+colorTo: blue
 sdk: gradio
 sdk_version: "4.44.0"
 app_file: app.py
