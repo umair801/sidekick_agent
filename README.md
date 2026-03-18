@@ -1,3 +1,14 @@
+---
+title: Sidekick Agent
+emoji: 🤖
+colorFrom: emerald
+colorTo: green
+sdk: gradio
+sdk_version: "4.44.0"
+app_file: app.py
+pinned: false
+---
+
 # 🤖 Sidekick: Autonomous AI Agent
 
 An intelligent AI co-worker that autonomously completes tasks using web browsing, code execution, and self-evaluation loops.
