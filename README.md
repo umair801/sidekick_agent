@@ -1,4 +1,11 @@
+# 🤖 Sidekick: Autonomous AI Agent
+
+**An intelligent AI co-worker that autonomously completes tasks using web browsing, code execution, and self-evaluation loops.**
+
+🚀 **Live Demo:** [huggingface.co/spaces/umair801/sidekick-agent](https://huggingface.co/spaces/umair801/sidekick-agent)
+
 ---
+
 title: Sidekick Agent
 emoji: 🤖
 colorFrom: green
@@ -8,13 +15,6 @@ sdk_version: "4.44.0"
 app_file: app.py
 pinned: false
 python_version: "3.11"
----
-
-# 🤖 Sidekick: Autonomous AI Agent
-
-**An intelligent AI co-worker that autonomously completes tasks using web browsing, code execution, and self-evaluation loops.**
-
-🚀 **Live Demo:** [huggingface.co/spaces/umair801/sidekick-agent](https://huggingface.co/spaces/umair801/sidekick-agent)
 
 ---
 
