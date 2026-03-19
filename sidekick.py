@@ -77,8 +77,6 @@ class Sidekick:
             {state["feedback_on_work"]}
             With this feedback, please continue the assignment, ensuring that you meet the success criteria or have a question for the user."""
 
-        # Add in the system message
-
         found_system_message = False
         messages = state["messages"]
         for message in messages:
@@ -89,10 +87,8 @@ class Sidekick:
         if not found_system_message:
             messages = [SystemMessage(content=system_message)] + messages
 
-        # Invoke the LLM with tools
         response = self.worker_llm_with_tools.invoke(messages)
 
-        # Return updated state
         return {
             "messages": [response],
         }
@@ -168,15 +164,12 @@ class Sidekick:
             return "worker"
 
     async def build_graph(self):
-        # Set up Graph Builder with State
         graph_builder = StateGraph(State)
 
-        # Add nodes
         graph_builder.add_node("worker", self.worker)
         graph_builder.add_node("tools", ToolNode(tools=self.tools))
         graph_builder.add_node("evaluator", self.evaluator)
 
-        # Add edges
         graph_builder.add_conditional_edges(
             "worker", self.worker_router, {"tools": "tools", "evaluator": "evaluator"}
         )
@@ -186,11 +179,13 @@ class Sidekick:
         )
         graph_builder.add_edge(START, "worker")
 
-        # Compile the graph
         self.graph = graph_builder.compile(checkpointer=self.memory)
 
     async def run_superstep(self, message, success_criteria, history):
-        config = {"configurable": {"thread_id": self.sidekick_id}}
+        config = {
+            "configurable": {"thread_id": self.sidekick_id},
+            "recursion_limit": 50,
+        }
 
         state = {
             "messages": message,
@@ -213,7 +208,6 @@ class Sidekick:
                 if self.playwright:
                     loop.create_task(self.playwright.stop())
             except RuntimeError:
-                # If no loop is running, do a direct run
                 asyncio.run(self.browser.close())
                 if self.playwright:
                     asyncio.run(self.playwright.stop())
